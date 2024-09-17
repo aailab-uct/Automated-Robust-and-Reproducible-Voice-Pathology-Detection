@@ -1,4 +1,5 @@
 # Automated Robust and Reproducible Voice Pathology Detection
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.13771573.svg)](https://doi.org/10.5281/zenodo.13771573)
 This repository contains the code for the paper "Towards the Automated Robust and Reproducible Voice
 Pathology Detection: A Machine Learning Approach" by Jan Vrba, Jakub Steinbach, Tomáš Jirsa, Laura Verde, Roberta De Fazio, Noriyasu Homma, Yuwen Zeng, Kei Ichiji, Lukáš Hájek, Zuzana Sedláková, Jan Mareš
 
