@@ -1,0 +1,47 @@
+\begin{table*}[!h]
+\centering
+\begin{tabular}{{llcccccc}}
+\toprule
+\multicolumn{2}{l}{Classifier} & \gls{svm} & \gls{knn} & \gls{nb} & \gls{dt} &\gls{rf} & AdaBoost \\
+\midrule
+\multicolumn{6}{l}{Performance metrics} \\
+\multirow{2}{*}{MCC} & $\mu$ &
+ & $\sigma$ &
+\multirow{2}{*}{SEN} & $\mu$ &
+ & $\sigma$  &
+\multirow{2}{*}{SPE} & $\mu$ &
+ & $\sigma$ &
+\multirow{2}{*}{UAR} & $\mu$ &
+ & $\sigma$  &
+\multirow{2}{*}{GM} & $\mu$ &
+ & $\sigma$  &
+\multirow{2}{*}{BM} & $\mu$ &
+ & $\sigma$  &
+\midrule
+\multicolumn{6}{l}{Features used in datasets} \\
+\multicolumn{2}{l}{$\overline{f}_{0}$} &
+\multicolumn{2}{l}{$\overline{HNR}$} &
+\multicolumn{2}{l}{$jitta$} &
+\multicolumn{2}{l}{$shim$} &
+\multicolumn{2}{l}{$NaN$} &
+\multicolumn{2}{l}{$age$} &
+\multicolumn{2}{l}{$\sigma_{f_0}$} &
+\multicolumn{2}{l}{$\Delta f_0$} &
+\multicolumn{2}{l}{$H$} &
+\multicolumn{2}{l}{$\overline{\mathbf{LFCC}}$} &
+\multicolumn{2}{l}{$\overline{\mathbf{f}}$} &
+\multicolumn{2}{l}{$skew$} &
+\multicolumn{2}{l}{$\overline{S}$} &
+\multicolumn{2}{l}{$\overline{SC}$} &
+\multicolumn{2}{l}{$\overline{SF}$} &
+\multicolumn{2}{l}{$\overline{RO}$} &
+\multicolumn{2}{l}{$\overline{ZCR}$} &
+\multicolumn{2}{l}{$\overline{\mathbf{MFCC}}$} &
+\multicolumn{2}{l}{$\overline{\Delta \mathbf{MFCC}}$} &
+\multicolumn{2}{l}{$\overline{\Delta^2 \mathbf{MFCC}}$} &
+\multicolumn{2}{l}{$\mathbf{\sigma^2_{MFCC}}$} &
+\multicolumn{2}{l}{$ \mathbf{\sigma^2_{\Delta MFCC}}$} &
+\multicolumn{2}{l}{$ \mathbf{\sigma^2_{\Delta^2MFCC}}$} &
+\bottomrule
+\end{tabular}
+\end{table*}

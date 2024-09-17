@@ -1,0 +1,50 @@
+cff-version: 1.2.0
+title: >-
+  Automated Robust and Reproducible Voice Pathology
+  Detection
+message: >-
+  If you use this code, we would appreciate a citation to
+  our paper.
+type: software
+authors:
+  - given-names: Jan
+    family-names: Vrba
+    email: jan.vrba@vscht.cz
+    affiliation: >-
+      Department of Mathematics, Informatics, and
+      Cybernetics, University of Chemistry and Technology,
+      Prague, Prague, Czech Republic and Department of
+      Radiological Imaging and Informatics, Tohoku
+      University Graduate School of Medicine, Sendai, Japan
+    orcid: 'https://orcid.org/0000-0002-3538-7124'
+  - given-names: Jakub
+    family-names: Steinbach
+    email: jakub.steinbach@vscht.cz
+    affiliation: >-
+      Department of Mathematics, Informatics, and
+      Cybernetics, University of Chemistry and Technology,
+      Prague, Prague, Czech Republic
+    orcid: 'https://orcid.org/0000-0002-4152-2177'
+  - given-names: Tomáš
+    family-names: Jirsa
+    email: tomas.jirsa@vscht.cz
+    affiliation: >-
+      Department of Mathematics, Informatics, and
+      Cybernetics, University of Chemistry and Technology,
+      Prague, Prague, Czech Republic
+    orcid: 'https://orcid.org/0000-0001-5228-9596'
+  - orcid: 'https://orcid.org/0000-0003-2422-1732'
+    affiliation: >-
+      Department of Mathematics and Physics, University of
+      Campania ”Luigi Vanvitelli”, Caserta, Italy
+    email: laura.verde@unicampania.it
+    given-names: Laura
+    family-names: Verde
+  - given-names: Roberta
+    family-names: De Fazio
+    affiliation: >-
+      Department of Mathematics and Physics, University of
+      Campania ”Luigi Vanvitelli”, Caserta, Italy
+    email: roberta.defazio@unicampania.it
+    orcid: 'https://orcid.org/0000-0002-0271-132X'
+license: GPL-3.0

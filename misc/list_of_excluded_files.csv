@@ -1,0 +1,384 @@
+session_id,reason,age,talker_id,pathology
+1573,corrupted,21,1027,healthy
+87,corrupted,68,97,healthy
+1231,age,17,1436,Mutationsfistelstimme
+1316,age,12,1700,Psychogene Mikrophonie
+1323,age,15,1703,Rhinophonie aperta
+1430,age,11,1778,Rhinophonie aperta
+1445,age,14,1795,Mutatio
+1483,age,17,1829,Balbuties
+1751,age,16,2015,Dysphonie
+2072,age,14,2264,Rekurrensparese
+2530,age,11,2664,Dysphonie
+349,age,16,1337,Mutationsfistelstimme
+667,age,6,1394,Juvenile Dysphonie
+803,age,16,707,healthy
+804,age,17,708,healthy
+807,age,16,711,healthy
+808,age,16,712,healthy
+809,age,17,713,healthy
+824,age,16,1436,Laryngitis
+900,age,9,1492,Phonationsknötchen
+111,age,9,1308,Velopharyngoplastik
+1171,age,17,919,healthy
+1174,age,17,924,healthy
+1179,age,17,931,healthy
+1182,age,17,935,healthy
+1184,age,17,932,healthy
+1299,age,17,1684,Hyperfunktionelle Dysphonie
+1543,age,9,1024,healthy
+1680,age,16,1979,Funktionelle Dysphonie
+1753,age,13,2018,Hyperfunktionelle Dysphonie
+1933,age,11,2143,Rhinophonie aperta
+2495,age,17,2629,healthy
+832,age,17,725,healthy
+833,age,17,720,healthy
+835,age,16,722,healthy
+836,age,17,723,healthy
+837,age,17,724,healthy
+839,age,17,727,healthy
+840,age,17,728,healthy
+844,age,12,1443,Laryngitis
+881,age,17,1474,Hyperfunktionelle Dysphonie
+937,age,14,1529,Psychogene Aphonie
+159,multiple recordings,54,1314,Hyperfunktionelle Dysphonie
+362,multiple recordings,65,1305,Rekurrensparese
+364,multiple recordings,47,1313,Rekurrensparese
+503,multiple recordings,54,1314,Kontaktpachydermie
+504,multiple recordings,78,1363,"Chordektomie, Stimmlippenpolyp"
+567,multiple recordings,65,64,Dysodie
+728,multiple recordings,65,1305,Rekurrensparese
+741,multiple recordings,51,1351,Psychogene Dysphonie
+822,multiple recordings,29,1348,Gesangsstimme
+875,multiple recordings,41,1455,Leukoplakie
+877,multiple recordings,58,1414,Psychogene Dysphonie
+878,multiple recordings,58,1358,Funktionelle Dysphonie
+879,multiple recordings,66,1398,Rekurrensparese
+887,multiple recordings,64,1386,Rekurrensparese
+889,multiple recordings,59,1340,"Hyperfunktionelle Dysphonie, Reinke Ödem"
+890,multiple recordings,49,120,Hyperfunktionelle Dysphonie
+896,multiple recordings,74,1448,Rekurrensparese
+907,multiple recordings,69,1432,Dysodie
+908,multiple recordings,50,1385,Rekurrensparese
+912,multiple recordings,65,1477,Rekurrensparese
+914,multiple recordings,48,1313,Rekurrensparese
+918,multiple recordings,68,1495,Laryngitis
+920,multiple recordings,57,1427,Chordektomie
+936,multiple recordings,67,1485,Frontolaterale Teilresektion
+1051,multiple recordings,29,1402,"Hyperfunktionelle Dysphonie, Psychogene Dysphonie"
+1056,multiple recordings,34,1541,Reinke Ödem
+1058,multiple recordings,58,1355,Psychogene Dysphonie
+1084,multiple recordings,49,1411,"Chordektomie, Taschenfaltenstimme"
+1089,multiple recordings,67,1485,Chordektomie
+1090,multiple recordings,59,1340,"Hyperfunktionelle Dysphonie, Reinke Ödem"
+1120,multiple recordings,65,1350,Rekurrensparese
+1159,multiple recordings,69,1445,Vox senilis
+1163,multiple recordings,69,1495,"Laryngitis, Taschenfaltenstimme"
+1164,multiple recordings,32,1550,Stimmlippenpolyp
+1165,multiple recordings,57,1427,Frontolaterale Teilresektion
+1190,multiple recordings,31,1454,Kontaktpachydermie
+1191,multiple recordings,67,1485,Frontolaterale Teilresektion
+1192,multiple recordings,62,1570,Laryngitis
+1198,multiple recordings,58,1510,Psychogene Dysphonie
+1199,multiple recordings,41,1513,Dysarthrophonie
+1206,multiple recordings,65,1386,"Reinke Ödem, Rekurrensparese"
+1221,multiple recordings,32,1550,"Laryngitis, Reinke Ödem"
+1222,multiple recordings,29,1466,Hyperfunktionelle Dysphonie
+1232,multiple recordings,67,1485,Frontolaterale Teilresektion
+1238,multiple recordings,67,1485,Frontolaterale Teilresektion
+1243,multiple recordings,62,1497,Frontolaterale Teilresektion
+1244,multiple recordings,39,1593,Funktionelle Dysphonie
+1245,multiple recordings,57,1625,Stimmlippenkarzinom
+1246,multiple recordings,53,1621,Laryngitis
+1254,multiple recordings,39,1593,Funktionelle Dysphonie
+1261,multiple recordings,60,1641,Hypofunktionelle Dysphonie
+1263,multiple recordings,33,1635,Rekurrensparese
+1267,multiple recordings,42,1633,Frontolaterale Teilresektion
+1269,multiple recordings,58,1311,Laryngitis
+1270,multiple recordings,60,1641,Rekurrensparese
+1271,multiple recordings,51,1385,Rekurrensparese
+1274,multiple recordings,37,1617,"Laryngitis, Reinke Ödem"
+1276,multiple recordings,29,1372,Dysphonie
+1277,multiple recordings,60,1641,Rekurrensparese
+1279,multiple recordings,58,1620,Frontolaterale Teilresektion
+1289,multiple recordings,60,1641,Rekurrensparese
+1290,multiple recordings,62,1515,Kontaktpachydermie
+1292,multiple recordings,42,1614,Rekurrensparese
+1303,multiple recordings,64,1407,Leukoplakie
+1313,multiple recordings,59,1620,Frontolaterale Teilresektion
+1314,multiple recordings,77,1397,Rekurrensparese
+1321,multiple recordings,59,1620,Chordektomie
+1322,multiple recordings,51,1699,"Funktionelle Dysphonie, Psychogene Dysphonie"
+1325,multiple recordings,37,1611,Rekurrensparese
+1331,multiple recordings,42,1401,Hyperfunktionelle Dysphonie
+1332,multiple recordings,64,1659,Stimmlippenkarzinom
+1333,multiple recordings,59,1620,Chordektomie
+1339,multiple recordings,59,1620,Chordektomie
+1340,multiple recordings,51,1699,"Cyste, Psychogene Dysphonie"
+1341,multiple recordings,64,1659,Stimmlippenkarzinom
+1359,multiple recordings,23,23,healthy
+1376,multiple recordings,59,1620,Chordektomie
+1383,multiple recordings,64,1659,Stimmlippenkarzinom
+1384,multiple recordings,51,1699,Psychogene Dysphonie
+1385,multiple recordings,59,1620,Chordektomie
+1390,multiple recordings,64,1678,Rekurrensparese
+1391,multiple recordings,64,1659,Stimmlippenkarzinom
+1392,multiple recordings,66,1446,Chordektomie
+1393,multiple recordings,59,1620,Chordektomie
+1394,multiple recordings,37,1415,Hyperfunktionelle Dysphonie
+1400,multiple recordings,51,1699,"Funktionelle Dysphonie, Psychogene Dysphonie"
+1401,multiple recordings,59,1620,Chordektomie
+1402,multiple recordings,42,1614,Rekurrensparese
+1403,multiple recordings,64,1659,Stimmlippenkarzinom
+1409,multiple recordings,67,1485,Frontolaterale Teilresektion
+1410,multiple recordings,64,1659,Chordektomie
+1411,multiple recordings,33,1683,Mutationsfistelstimme
+1412,multiple recordings,59,1620,Chordektomie
+1421,multiple recordings,51,1699,Psychogene Dysphonie
+1422,multiple recordings,59,1620,Chordektomie
+1428,multiple recordings,64,1659,Stimmlippenkarzinom
+1429,multiple recordings,59,1620,"Chordektomie, Taschenfaltenstimme"
+1432,multiple recordings,51,1699,"Funktionelle Dysphonie, Psychogene Dysphonie"
+1433,multiple recordings,57,1741,Stimmlippenpolyp
+1435,multiple recordings,48,1729,Funktionelle Dysphonie
+1440,multiple recordings,36,1756,Laryngitis
+1446,multiple recordings,58,1427,Frontolaterale Teilresektion
+1447,multiple recordings,38,1617,"Laryngitis, Reinke Ödem"
+1448,multiple recordings,67,1747,Leukoplakie
+1449,multiple recordings,43,1633,Laryngozele
+1450,multiple recordings,80,1363,"Chordektomie, Kontaktpachydermie"
+1451,multiple recordings,64,1659,Stimmlippenkarzinom
+1461,multiple recordings,59,1355,Hypofunktionelle Dysphonie
+1464,multiple recordings,46,1319,"Hyperfunktionelle Dysphonie, Phonationsknötchen"
+1465,multiple recordings,64,1659,Stimmlippenkarzinom
+1466,multiple recordings,61,1689,Rekurrensparese
+1467,multiple recordings,55,1581,Taschenfaltenstimme
+1468,multiple recordings,39,1505,Hyperfunktionelle Dysphonie
+1471,multiple recordings,20,936,Hyperfunktionelle Dysphonie
+1472,multiple recordings,72,1636,"Carcinoma in situ, Laryngitis"
+1481,multiple recordings,55,1410,Kontaktpachydermie
+1486,multiple recordings,72,1636,"Chordektomie, Taschenfaltenstimme"
+1487,multiple recordings,59,1768,"Chordektomie, Frontolaterale Teilresektion"
+1490,multiple recordings,43,1633,Frontolaterale Teilresektion
+1503,multiple recordings,80,1363,Chordektomie
+1548,multiple recordings,75,1448,Rekurrensparese
+1554,multiple recordings,50,1498,Laryngitis
+1556,multiple recordings,34,1683,Mutationsfistelstimme
+1557,multiple recordings,65,1407,Leukoplakie
+1558,multiple recordings,59,1620,Frontolaterale Teilresektion
+1559,multiple recordings,65,1407,Leukoplakie
+1563,multiple recordings,49,1733,Reinke Ödem
+1564,multiple recordings,78,1397,Rekurrensparese
+1566,multiple recordings,52,1714,"Hyperfunktionelle Dysphonie, Psychogene Dysphonie"
+1575,multiple recordings,36,1597,Aryluxation
+1579,multiple recordings,30,46,healthy
+1581,multiple recordings,72,1832,"Dysodie, Rekurrensparese"
+1590,multiple recordings,59,1355,Hypofunktionelle Dysphonie
+1592,multiple recordings,23,1663,Gesangsstimme
+1604,multiple recordings,67,1419,Rekurrensparese
+1605,multiple recordings,30,46,healthy
+1606,multiple recordings,67,1446,Chordektomie
+1607,multiple recordings,30,1601,"Hyperfunktionelle Dysphonie, Phonationsknötchen"
+1608,multiple recordings,39,1727,Hyperfunktionelle Dysphonie
+1612,multiple recordings,23,1912,healthy
+1614,multiple recordings,59,1311,Laryngitis
+1622,multiple recordings,57,1882,Stimmlippenpolyp
+1626,multiple recordings,52,1863,Rekurrensparese
+1634,multiple recordings,49,1868,Frontolaterale Teilresektion
+1635,multiple recordings,58,1427,Frontolaterale Teilresektion
+1646,multiple recordings,63,1515,Kontaktpachydermie
+1649,multiple recordings,51,1555,"Dysplastische Dysphonie, Intubationsgranulom"
+1652,multiple recordings,70,1787,Spasmodische Dysphonie
+1655,multiple recordings,60,1818,Rekurrensparese
+1657,multiple recordings,58,1879,Dysphonie
+1658,multiple recordings,44,1910,Rekurrensparese
+1662,multiple recordings,56,1902,Rekurrensparese
+1664,multiple recordings,60,1716,Rekurrensparese
+1665,multiple recordings,51,1928,"Laryngitis, Leukoplakie"
+1666,multiple recordings,70,1787,Spasmodische Dysphonie
+1672,multiple recordings,70,1787,Spasmodische Dysphonie
+1676,multiple recordings,60,1818,Rekurrensparese
+1677,multiple recordings,70,1787,Spasmodische Dysphonie
+1683,multiple recordings,71,1781,Rekurrensparese
+1689,multiple recordings,70,1787,Spasmodische Dysphonie
+1713,multiple recordings,60,1716,Rekurrensparese
+1722,multiple recordings,74,1819,"Rekurrensparese, Stimmlippenpolyp"
+1723,multiple recordings,70,1787,Spasmodische Dysphonie
+1742,multiple recordings,21,1981,Funktionelle Dysphonie
+1748,multiple recordings,64,1942,Rekurrensparese
+1749,multiple recordings,57,2000,"Frontolaterale Teilresektion, Stimmlippenpolyp"
+1752,multiple recordings,56,1872,Spasmodische Dysphonie
+1755,multiple recordings,75,1559,Rekurrensparese
+1756,multiple recordings,50,1868,Frontolaterale Teilresektion
+1762,multiple recordings,70,1787,Spasmodische Dysphonie
+1763,multiple recordings,35,2027,Spasmodische Dysphonie
+1769,multiple recordings,70,1787,Spasmodische Dysphonie
+1770,multiple recordings,36,2027,Spasmodische Dysphonie
+1771,multiple recordings,54,1469,Chordektomie
+1774,multiple recordings,51,1995,Chordektomie
+1778,multiple recordings,53,1966,"Hyperfunktionelle Dysphonie, Reinke Ödem"
+1780,multiple recordings,56,1314,"Kontaktpachydermie, Laryngitis"
+1782,multiple recordings,36,2027,Spasmodische Dysphonie
+1784,multiple recordings,69,1877,Rekurrensparese
+1785,multiple recordings,61,1818,Rekurrensparese
+1790,multiple recordings,36,2027,Spasmodische Dysphonie
+1797,multiple recordings,36,2027,Spasmodische Dysphonie
+1798,multiple recordings,57,2032,Funktionelle Dysphonie
+1804,multiple recordings,36,2027,Spasmodische Dysphonie
+1807,multiple recordings,36,2027,Spasmodische Dysphonie
+1808,multiple recordings,60,1620,Frontolaterale Teilresektion
+1816,multiple recordings,21,1981,Hyperfunktionelle Dysphonie
+1817,multiple recordings,36,2027,Spasmodische Dysphonie
+1821,multiple recordings,36,2027,Spasmodische Dysphonie
+1828,multiple recordings,72,2078,Reinke Ödem
+1834,multiple recordings,36,2027,Spasmodische Dysphonie
+1835,multiple recordings,57,2091,Rekurrensparese
+1863,multiple recordings,58,2007,Rekurrensparese
+1864,multiple recordings,66,1407,Leukoplakie
+1866,multiple recordings,57,2022,Phonationsknötchen
+1869,multiple recordings,36,2027,Spasmodische Dysphonie
+1892,multiple recordings,58,1990,Rekurrensparese
+1894,multiple recordings,37,1597,"Aryluxation, Dysphonie"
+1895,multiple recordings,42,1987,Hyperfunktionelle Dysphonie
+1901,multiple recordings,68,1419,Rekurrensparese
+1902,multiple recordings,36,2027,Spasmodische Dysphonie
+1908,multiple recordings,36,2027,Spasmodische Dysphonie
+1909,multiple recordings,36,2027,Spasmodische Dysphonie
+1913,multiple recordings,57,2000,"Frontolaterale Teilresektion, Leukoplakie"
+1914,multiple recordings,71,1787,Spasmodische Dysphonie
+1929,multiple recordings,23,2065,Hyperfunktionelle Dysphonie
+1930,multiple recordings,60,1311,Laryngitis
+1931,multiple recordings,52,1699,"Cyste, Psychogene Dysphonie"
+1932,multiple recordings,60,1620,Chordektomie
+1938,multiple recordings,36,2027,Spasmodische Dysphonie
+1942,multiple recordings,66,1659,"Chordektomie, Kehlkopftumor"
+1943,multiple recordings,38,2130,"Dysarthrophonie, Zentral-laryngale Bewegungsstörung"
+1944,multiple recordings,22,2060,Hyperfunktionelle Dysphonie
+1945,multiple recordings,71,1787,Spasmodische Dysphonie
+1946,multiple recordings,72,2078,Reinke Ödem
+1949,multiple recordings,50,1868,Frontolaterale Teilresektion
+1950,multiple recordings,59,2148,Spasmodische Dysphonie
+1951,multiple recordings,52,1499,Psychogene Dysphonie
+1955,multiple recordings,67,2090,Rekurrensparese
+1960,multiple recordings,36,2027,Spasmodische Dysphonie
+1961,multiple recordings,71,1787,Spasmodische Dysphonie
+1970,multiple recordings,74,2108,Rekurrensparese
+1972,multiple recordings,36,2027,Spasmodische Dysphonie
+1986,multiple recordings,58,2176,Kontaktpachydermie
+1991,multiple recordings,51,1411,Chordektomie
+1992,multiple recordings,59,2148,Spasmodische Dysphonie
+1993,multiple recordings,35,1959,Hyperfunktionelle Dysphonie
+1994,multiple recordings,71,1787,Spasmodische Dysphonie
+1998,multiple recordings,36,2027,Spasmodische Dysphonie
+2004,multiple recordings,35,1683,Mutationsfistelstimme
+2010,multiple recordings,59,2148,Spasmodische Dysphonie
+2011,multiple recordings,61,1620,Frontolaterale Teilresektion
+2022,multiple recordings,71,1787,Spasmodische Dysphonie
+2023,multiple recordings,59,2148,Spasmodische Dysphonie
+2029,multiple recordings,65,1444,"Chordektomie, Taschenfaltenstimme"
+2030,multiple recordings,36,2027,Spasmodische Dysphonie
+2031,multiple recordings,72,2078,Reinke Ödem
+2034,multiple recordings,29,2225,"Hyperfunktionelle Dysphonie, Kontaktpachydermie"
+2061,multiple recordings,60,2083,Dysodie
+2064,multiple recordings,52,1995,Chordektomie
+2077,multiple recordings,57,1961,Hyperfunktionelle Dysphonie
+2078,multiple recordings,32,1970,Rekurrensparese
+2082,multiple recordings,60,2148,Spasmodische Dysphonie
+2083,multiple recordings,58,1990,Rekurrensparese
+2087,multiple recordings,62,2266,Dysphonie
+2088,multiple recordings,77,1448,Rekurrensparese
+2091,multiple recordings,70,2216,"Dysphonie, Leukoplakie"
+2109,multiple recordings,56,2040,Rekurrensparese
+2119,multiple recordings,70,2213,Dysphonie
+2120,multiple recordings,66,1307,"Dysphonie, Laryngitis"
+2131,multiple recordings,58,2000,Frontolaterale Teilresektion
+2136,multiple recordings,51,1868,Chordektomie
+2141,multiple recordings,60,2148,Spasmodische Dysphonie
+2144,multiple recordings,31,2326,Cyste
+2150,multiple recordings,45,1614,Rekurrensparese
+2151,multiple recordings,60,2019,Hyperfunktionelle Dysphonie
+2155,multiple recordings,61,2211,Rekurrensparese
+2158,multiple recordings,60,2148,Spasmodische Dysphonie
+2159,multiple recordings,72,1787,Spasmodische Dysphonie
+2175,multiple recordings,21,1089,healthy
+2186,multiple recordings,32,2120,Hyperfunktionelle Dysphonie
+2188,multiple recordings,42,2358,Reinke Ödem
+2189,multiple recordings,70,1603,Chordektomie
+2190,multiple recordings,59,1990,Rekurrensparese
+2194,multiple recordings,60,2148,Spasmodische Dysphonie
+2200,multiple recordings,26,12,healthy
+2211,multiple recordings,42,2358,Reinke Ödem
+2213,multiple recordings,48,2261,Psychogene Dysphonie
+2227,multiple recordings,37,2027,Spasmodische Dysphonie
+2234,multiple recordings,37,2027,Spasmodische Dysphonie
+2243,multiple recordings,32,1970,Rekurrensparese
+2246,multiple recordings,54,1714,Psychogene Dysphonie
+2268,multiple recordings,60,1427,Chordektomie
+2271,multiple recordings,73,2078,Reinke Ödem
+2291,multiple recordings,72,2387,Chordektomie
+2293,multiple recordings,47,2174,Hyperfunktionelle Dysphonie
+2296,multiple recordings,61,1311,Laryngitis
+2303,multiple recordings,73,2420,"Funktionelle Dysphonie, Stimmlippenpolyp, Vox senilis"
+2304,multiple recordings,37,2027,Spasmodische Dysphonie
+2311,multiple recordings,41,1505,Dysphonie
+2320,multiple recordings,37,2027,Spasmodische Dysphonie
+2326,multiple recordings,47,1937,"Dysphonie, Kontaktpachydermie"
+2330,multiple recordings,53,2350,Rekurrensparese
+2334,multiple recordings,65,2010,Dysarthrophonie
+2341,multiple recordings,26,2246,Rekurrensparese
+2351,multiple recordings,59,1931,"Laryngitis, Leukoplakie"
+2352,multiple recordings,72,1787,Spasmodische Dysphonie
+2355,multiple recordings,39,1947,Dysarthrophonie
+2358,multiple recordings,73,2420,Reinke Ödem
+2361,multiple recordings,72,1787,Spasmodische Dysphonie
+2362,multiple recordings,69,1446,Chordektomie
+2363,multiple recordings,32,1601,Hyperfunktionelle Dysphonie
+2366,multiple recordings,61,2019,Dysphonie
+2371,multiple recordings,45,2456,Dysodie
+2373,multiple recordings,72,1787,Amyotrophe Lateralsklerose
+2382,multiple recordings,52,2258,Funktionelle Dysphonie
+2383,multiple recordings,52,1868,Frontolaterale Teilresektion
+2384,multiple recordings,53,1805,"Dysphonie, Kontaktpachydermie"
+2385,multiple recordings,63,2402,Kontaktpachydermie
+2395,multiple recordings,78,1448,Rekurrensparese
+2396,multiple recordings,61,2148,Spasmodische Dysphonie
+2397,multiple recordings,72,1787,Spasmodische Dysphonie
+2410,multiple recordings,34,2484,Funktionelle Dysphonie
+2412,multiple recordings,39,1357,Intubationsschaden
+2413,multiple recordings,58,1314,Funktionelle Dysphonie
+2417,multiple recordings,63,2550,Funktionelle Dysphonie
+2422,multiple recordings,31,2399,Dysphonie
+2430,multiple recordings,41,2357,Rekurrensparese
+2432,multiple recordings,66,2525,Funktionelle Dysphonie
+2437,multiple recordings,46,2360,Frontolaterale Teilresektion
+2438,multiple recordings,48,2483,Hyperfunktionelle Dysphonie
+2439,multiple recordings,71,2216,Kontaktpachydermie
+2440,multiple recordings,61,2148,Spasmodische Dysphonie
+2442,multiple recordings,32,2521,Funktionelle Dysphonie
+2453,multiple recordings,71,1603,Chordektomie
+2455,multiple recordings,78,1448,Rekurrensparese
+2456,multiple recordings,66,2534,"Dysphonie, Frontolaterale Teilresektion"
+2458,multiple recordings,59,2000,"Chordektomie, Taschenfaltenstimme"
+2469,multiple recordings,46,1614,Rekurrensparese
+2477,multiple recordings,59,2022,Funktionelle Dysphonie
+2482,multiple recordings,49,2088,Hyperfunktionelle Dysphonie
+2483,multiple recordings,64,2402,Funktionelle Dysphonie
+2484,multiple recordings,50,2535,"Chordektomie, Leukoplakie"
+2485,multiple recordings,73,1787,Spasmodische Dysphonie
+2490,multiple recordings,64,1634,Chordektomie
+2491,multiple recordings,64,2001,"Reinke Ödem, Rekurrensparese"
+2494,multiple recordings,46,2360,Chordektomie
+2503,multiple recordings,63,1768,Chordektomie
+2504,multiple recordings,32,2467,Funktionelle Dysphonie
+2512,multiple recordings,40,1357,Rekurrensparese
+2518,multiple recordings,64,2434,"Reinke Ödem, Stimmlippenpolyp"
+2536,multiple recordings,64,1818,Rekurrensparese
+2537,multiple recordings,58,2582,Dysphonie
+2543,multiple recordings,69,2381,Kontaktpachydermie
+2548,multiple recordings,72,1603,Chordektomie
+2558,multiple recordings,30,1695,"Dysodie, Sigmatismus"
+2564,multiple recordings,61,2007,"Rekurrensparese, Vox senilis"
+2575,multiple recordings,72,2601,"Chordektomie, Dysphonie"
+2586,multiple recordings,55,2653,Kontaktpachydermie
+2596,multiple recordings,64,2336,"Dysphonie, Vox senilis"
+2599,multiple recordings,74,1445,Zentral-laryngale Bewegungsstörung
