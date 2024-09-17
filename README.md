@@ -19,13 +19,13 @@ Used setup for experiments
 
 ## Notes on reproducibility
 
-We tried to make the results as reproducible as possible. Althoug we employed many approaches to ensure the reproducibility, it is still possible that the results will not be exactly the same, mainle due to the floating point arithmetic. We provide the checksums for all files that are generated during the experiments. The checksums are stored in the `misc` folder. The checksums are computed using the code in `src/checksums`, however, they can be computed using 7-zip or sha256sum utility.
+We tried to make the results as reproducible as possible. Although we employed many approaches to ensure the reproducibility, it is still possible that the results will not be exactly the same, mainly due to the floating point arithmetic. We provide the checksums for all files that are generated during the experiments. The checksums are stored in the `misc` folder. The checksums are computed using the code in `src/checksums`, however, they can be computed using 7-zip or sha256sum utility.
 
 When running the `main.py` script, the script checks the checksums of the downloaded data, the extracted features, the generated datasets, the results of the classifiers, the average results, and the results of the repeated stratified cross-validation.
 
-**Beware** that git on Windows can change the line endings from LF to CRLF. This can cause the checksums to fail. Most probably you only need to change EOL of `misc\svd_information.csv`. Additionaly, check [this link](https://docs.github.com/en/get-started/getting-started-with-git/configuring-git-to-handle-line-endings) on how to configure git to handle this problem. The script should save every csv file with LF as EOL.
+**Beware** that git on Windows can change the line endings from LF to CRLF. This can cause the checksums to fail. Most probably you only need to change EOL of `misc\svd_information.csv`. Additionally, check [this link](https://docs.github.com/en/get-started/getting-started-with-git/configuring-git-to-handle-line-endings) on how to configure git to handle this problem. The script should save every csv file with LF as EOL.
 
-Additionaly we provide `our_results_tables` and `our_results_xvalidation` folders that contain the results of our experiments. We do not include the `results` folder as it is too large to be stored in the repository, even when compressed.
+Additionally, we provide `our_results_tables` and `our_results_xvalidation` folders that contain the results of our experiments. We do not include the `results` folder as it is too large to be stored in the repository, even when compressed.
 
 
 ## Dataset preparation
@@ -60,12 +60,12 @@ the following command
 
 Additionally, you can specify the number of threads used for dataset generation by setting the `MAX_WORKERS` variable in the `main.py` script. The default value is 24. Moreover, you can run individual steps of the pipeline by running the corresponding script. These scripts usually allow to specify sex and classifier type you want to run. However, the `main.py` script is the most convenient way to reproduce the results, provides checking of the checksums of the generated files, and was tested to work as expected.
 
-This script automatically performs following tasks from the correspongind scripts:
+This script automatically performs following tasks from the corresponding scripts:
 
 0. **checking downloaded data consistency**
 
-During this step, it is checked if your downloaded files from SVD corresponds with our dataset.
-This is achieved via comparison of the  checksum of your data with the checksum in the `misc/data_usd.sha256`.
+During this step, it is checked if your downloaded files from SVD correspond with our dataset.
+This is achieved via comparison of the checksum of your data with the checksum in the `misc/data_usd.sha256`.
 
 1. `data_preprocessing.py` - **removing the corrupted files and duplicities and triming silence**
 
@@ -84,7 +84,7 @@ configuration stored in `configuration.json`. The checksum of resulting dataset 
 4. `classifier_pipeline.py` - **running the machine learning pipeline**.
 
 This step is computationally extremely demanding and it took more than 14 days to finish on the recommended setup. **The number of cores (or CPUs) can
-significantly reduce the computation time!**. The result is the `results` folder containing subfolders `men` and `women` that contains the subfolders with results for all datasets generated in previous step. The results are saved into the `results.csv` files. All files with results are checking across the checksums provided in `misc/after_IV.sha256` file.
+significantly reduce the computation time!**. The result is the `results` folder containing subfolders `men` and `women` that contains the subfolders with results for all datasets generated in previous step. The results are saved into the `results.csv` files. All files with results are checked across the checksums provided in `misc/after_IV.sha256` file.
 
 5. `average_results.py` - **computing average results**
 
@@ -95,10 +95,10 @@ in the previous step 5.). The resulting files are checked across the checksums p
 
 6. `repeated_cross_validation_best.py` - **repeated stratified cross-validation of the best classifiers**
 
-This step s computationally demanding. For each type of classifier, we select 1000 the best classifiers
+This step is computationally demanding. For each type of classifier, we select 1000 the best classifiers
 (configuration of hyperparameters and dataset) and perform repeated (100 times) stratified 10-fold cross-validation.
 The results are saved in the `results_xvalidation` folder, that contains subfolders named according to classifiers names.
-I each of those subfolders is a `xvalidation_results.csv` file with the performance of the classifiers during the
+In each of those subfolders is a `xvalidation_results.csv` file with the performance of the classifiers during the
 above mentioned process. The results of this step are checked across the checksums provided
 in `misc/after_VI.sha256` file.
 
