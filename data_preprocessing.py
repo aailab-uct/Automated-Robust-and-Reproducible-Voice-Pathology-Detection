@@ -1,5 +1,6 @@
 """
-Script that removes silence from the Saarbruecken Voice Database recordings.
+Script that loads the dataset, preprocess it to desired format, drops undesired files,
+and removes silence from the recordings.
 """
 from pathlib import Path
 
