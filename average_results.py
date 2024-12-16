@@ -13,6 +13,10 @@ import pandas as pd
 
 from src.checksum import update_checksums
 
+# Disable warnings
+import os, warnings
+warnings.simplefilter("ignore")
+os.environ["PYTHONWARNINGS"] = "ignore"
 
 def compute_stats(file_path):
     """
@@ -54,7 +58,7 @@ def process_results(classifiers: List[str]):
         path_to_results = Path(".", "results", classifier)
 
         for folder in sorted(path_to_results.iterdir()):
-            # iterate over men/women
+            # iterate over men/women/both
             result_summary = Path(results_tables_dir,
                                   f"results_{classifier}_{folder.name}.csv")
             if result_summary.is_file():

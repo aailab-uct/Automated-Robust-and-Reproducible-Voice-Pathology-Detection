@@ -1,6 +1,13 @@
 from pathlib import Path
 import pandas as pd
 import json
+import numpy as np
+
+delta = {
+    "men": 2*(436)/(252+436) - 1,
+    "women": 2*((541)/(407+541)) - 1,
+    "both": 2*(541+436)/(407+541+252+436) - 1,
+}
 
 def prepare_table_with_results(sex):
     list_of_files = list(Path(".").resolve().parents[0].joinpath("results_xvalidation").glob(f"*_{sex}_*.csv"))
@@ -24,9 +31,30 @@ def prepare_table_with_results(sex):
     # Rename recall to sensitivity
     data_joined.rename(columns={"test_recall": "test_sensitivity", "test_recall_stdev": "test_sensitivity_stdev"},
                          inplace=True)
-    # Drop accuracy
+    # Sort
+    data_joined.sort_values("classifier", inplace=True)
+
+    # drop accuracy
     return data_joined.drop(["test_accuracy", "test_accuracy_stdev"], axis=1)
+
 def generate_tables_for_top_results():
+    # Prepare table for computing bias
+    bias_latex = (
+        "\\begin{table}[h]\n"
+        "\\centering\n"
+        "\\caption{Estimated mean bias of each metric for best classifier for each sex}\n"
+        "\\label{tab:metric_bias}\n"
+        "\\begin{tabular}{| l|| r | r || r | r || r |r |}\n"
+        "\\hline\n"
+        "Metric &  Female & Bias  & Male & Bias & Both & Bias \\\\\n"
+        "\\hline\n"
+    )
+    bias_table = pd.DataFrame(columns=["name", "women_result", "women_bias", "men_result", "men_bias",
+                                       "both_result", "both_bias"])
+    bias_table.set_index("name", inplace=True)
+
+
+
     # Generate the table with performance
     table_results = prepare_table_with_results("women")
     # Declaration of the latex table
@@ -52,17 +80,53 @@ def generate_tables_for_top_results():
     # Middle rule
     table_body += "\\midrule\n"
 
-    for sex, table in zip(["women", "men"], [table_results, prepare_table_with_results("men")]):
+    for sex in ["women", "men","both"]:
+        table = prepare_table_with_results(sex)
+
+        # Compute bias
+        # find sensitivity(lpp) and specificity(lnn) for highest mcc
+        lpp, lnn = table.loc[table["test_mcc"].idxmax()][["test_sensitivity", "test_specificity"]]
+        d = delta[sex]
+        # Compute metrics and biases
+        bias_table.loc["Sensitivity",f"{sex}_result"] = lpp
+        bias_table.loc["Sensitivity",f"{sex}_bias"] = 0
+        bias_table.loc["Specificity",f"{sex}_result"] = lnn
+        bias_table.loc["Specificity",f"{sex}_bias"] = 0
+        bias_table.loc["Accuracy",f"{sex}_result"] = lpp*(1+d)/2 +lnn*(1-d)/2
+        bias_table.loc["Accuracy",f"{sex}_bias"] = (d/2)*(lpp-lnn)
+        bias_table.loc["F1-score",f"{sex}_result"] = (2*lpp*(1+d))/((1+lpp)*(1+d)+(1-lnn)*(1-d))
+        bias_table.loc["F1-score",f"{sex}_bias"] = (2*lpp*(1+d))/((1+lpp)*(1+d)+(1-lnn)*(1-d)) - 2*lpp/(2+lpp-lnn)
+        bias_table.loc["Precision",f"{sex}_result"] = (lpp*(1+d))/(lpp*(1+d)+(1-lnn)*(1-d))
+        bias_table.loc["Precision",f"{sex}_bias"] = (1+d)/((1+d)+((1-lnn)/lpp)*(1-d)) - 1/(1+(1-lnn)/lpp)
+        bias_table.loc["GM",f"{sex}_result"] = np.sqrt(lpp*lnn)
+        bias_table.loc["GM",f"{sex}_bias"] = 0
+        bias_table.loc["UAR",f"{sex}_result"] = (lpp+lnn)/2
+        bias_table.loc["UAR",f"{sex}_bias"] = 0
+        bias_table.loc["MCC (normalized)",f"{sex}_result"] = ((lpp+lnn-1)/np.sqrt((lpp+(1-lnn)*(1-d)/(1+d))*(lnn+(1-lnn)*(1+d)/(1-d))))/2 +1/2
+        bias_table.loc["MCC (normalized)",f"{sex}_bias"] = (lpp+lnn-1)/(2*np.sqrt((lpp+(1-lnn)*(1-d)/(1+d))*(lnn+(1-lnn)*(1+d)/(1-d)))) - (lpp+lnn-1)/(2*np.sqrt((lpp+1-lnn)*(lnn+1-lpp)))
+
+
         # Adding the results
         for idx, (classifier, row) in enumerate(table.iterrows()):
             add = ""
             if idx == 0:
-                add += f"\\multirow{{{table_results.shape[0]}}}{{*}}{{{'F' if sex == 'women' else 'M'}}} & "
+                match sex:
+                    case 'women':
+                        sex_id = 'F'
+                    case 'men':
+                        sex_id = 'M'
+                    case 'both':
+                        sex_id = 'B'
+                    case _:
+                        raise RuntimeError
+                add += f"\\multirow{{{table_results.shape[0]}}}{{*}}{{{sex_id}}} & "
             else:
                 add += "& "
 
             table_row = classifier + " & " + " & ".join([f"{val:.4f}" for val in row.iloc[2:]])
             table_body += add + table_row + "\\\\\n"
+
+
 
         # Middle rule
         table_body += "\\midrule\n"
@@ -77,6 +141,20 @@ def generate_tables_for_top_results():
 
     with open("table_top_results.txt", "w") as file:
         file.write(table_header + table_body[:-9] + table_footer)
+
+    # finalise bias table
+    for metric, res in bias_table.transpose().to_dict().items():
+        bias_latex += f"{metric}"
+        for val in res.values():
+            bias_latex += f" & {val:.4f}"
+        bias_latex += "\\\\\n"
+    bias_latex += (
+        "\\hline\n"
+        "\\end{tabular}\n"
+        "\\end{table}\n"
+    )
+    with open("bias_table.txt", "w") as file:
+        file.write(bias_latex)
 
 def fetch_dataset_information(sex):
     data_list = []
@@ -96,7 +174,7 @@ def fetch_dataset_information(sex):
     # Drop obsolete sex
     data_joined.drop(columns=["sex"], inplace=True)
     # Add the compulsory features
-    for col in ["f0", "hnr", "jitta", "shim", "nan", "age"]:
+    for col in ["f0", "hnr", "jitta", "shim", "age"]:
         data_joined[col] = True
     for col in ["mfcc_delta", "mfcc_2delta"]:
         data_joined[col] = data_joined.mfcc
@@ -172,10 +250,5 @@ def generate_table_with_configurations(sex):
 
 if __name__ == '__main__':
     generate_tables_for_top_results()
-    for sex in ["men", "women"]:
-        generate_table_with_configurations(sex)
-
-
-
-
-
+    for current_sex in ["men", "women", "both"]:
+        generate_table_with_configurations(current_sex)

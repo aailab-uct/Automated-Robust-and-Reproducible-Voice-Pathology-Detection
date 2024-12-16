@@ -9,6 +9,11 @@ from sklearn.tree import DecisionTreeClassifier
 
 from src.custom_smote import CustomSMOTE
 
+# Disable warnings
+import os, warnings
+warnings.simplefilter("ignore")
+os.environ["PYTHONWARNINGS"] = "ignore"
+
 # definition of classifiers parameters for gridsearch
 grids = {
     'svm_poly': {
@@ -48,7 +53,7 @@ grids = {
 }
 
 
-def get_classifier(classifier_name: str, random_seed: int = 42, hyperparameters: dict = None):
+def get_classifier(classifier_name: str, both_sexes: bool = False, random_seed: int = 42, hyperparameters: dict = None):
     """
     Get classifier with the given name.
     :param classifier_name: str, name of the classifier
@@ -66,57 +71,35 @@ def get_classifier(classifier_name: str, random_seed: int = 42, hyperparameters:
         for key, value in hyperparameters.items():
             key = key.replace("classifier__", "")
             processed_hyperparameters[key] = value
+    match classifier_name:
+        case "svm_poly":
+            classifier = ("classifier", SVC(max_iter=int(5e5),
+                                            random_state=random_seed,
+                                            **processed_hyperparameters))
+        case "svm_rbf":
+            classifier = ("classifier", SVC(max_iter=int(5e5),
+                                            random_state=random_seed,
+                                            **processed_hyperparameters))
+        case "knn":
+            classifier = ("classifier", KNeighborsClassifier(**processed_hyperparameters))
+        case "gauss_nb":
+            classifier = ("classifier", GaussianNB(**processed_hyperparameters))
+        case "random_forest":
+            classifier = ("classifier", RandomForestClassifier(random_state=random_seed,
+                                                               **processed_hyperparameters))
+        case "adaboost":
+            classifier = ("classifier", AdaBoostClassifier(random_state=random_seed,
+                                                           algorithm="SAMME",
+                                                           **processed_hyperparameters))
+        case "decisiontree":
+            classifier = ("classifier", DecisionTreeClassifier(random_state=random_seed,
+                                                           **processed_hyperparameters))
+        case _:
+            raise ValueError(f"Unknown classifier: {classifier_name}")
 
-    if classifier_name == "svm_poly":
-        pipe = Pipeline([
-            ("smote", CustomSMOTE(random_state=random_seed)),
-            ("minmaxscaler", MinMaxScaler()),
-            ("classifier", SVC(max_iter=int(1e6),
-                               random_state=random_seed,
-                               **processed_hyperparameters))
-        ])
-    elif classifier_name == "svm_rbf":
-        pipe = Pipeline([
-            ("smote", CustomSMOTE(random_state=random_seed)),
-            ("minmaxscaler", MinMaxScaler()),
-            ("classifier", SVC(max_iter=int(1e6),
-                               random_state=random_seed,
-                               **processed_hyperparameters))
-        ])
-    elif classifier_name == "knn":
-        pipe = Pipeline([
-            ("smote", CustomSMOTE(random_state=random_seed)),
-            ("minmaxscaler", MinMaxScaler()),
-            ("classifier", KNeighborsClassifier(**processed_hyperparameters))
-        ])
-    elif classifier_name == "gauss_nb":
-        pipe = Pipeline([
-            ("smote", CustomSMOTE(random_state=random_seed)),
-            ("minmaxscaler", MinMaxScaler()),
-            ("classifier", GaussianNB(**processed_hyperparameters))
-        ])
-    elif classifier_name == "random_forest":
-        pipe = Pipeline([
-            ("smote", CustomSMOTE(random_state=random_seed)),
-            ("minmaxscaler", MinMaxScaler()),
-            ("classifier", RandomForestClassifier(random_state=random_seed,
-                                                  **processed_hyperparameters))
-        ])
-    elif classifier_name == "adaboost":
-        pipe = Pipeline([
-            ("smote", CustomSMOTE(random_state=random_seed)),
-            ("minmaxscaler", MinMaxScaler()),
-            ("classifier", AdaBoostClassifier(random_state=random_seed,
-                                              algorithm="SAMME",
-                                              **processed_hyperparameters))
-        ])
-    elif classifier_name == "decisiontree":
-        pipe = Pipeline([
-            ("smote", CustomSMOTE(random_state=random_seed)),
-            ("minmaxscaler", MinMaxScaler()),
-            ("classifier", DecisionTreeClassifier(random_state=random_seed,
-                                                  **processed_hyperparameters))
-        ])
-    else:
-        raise ValueError(f"Unknown classifier: {classifier_name}")
+    pipe = Pipeline([
+        ("smote", CustomSMOTE(per_sex=both_sexes,random_state=random_seed)),
+        ("minmaxscaler", MinMaxScaler()),
+        classifier
+    ])
     return pipe, grids[classifier_name]

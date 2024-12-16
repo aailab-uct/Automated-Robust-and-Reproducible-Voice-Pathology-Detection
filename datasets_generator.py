@@ -11,6 +11,11 @@ from pathlib import Path
 from multiprocessing import freeze_support
 from tqdm.contrib.concurrent import process_map
 
+# Disable warnings
+import os, warnings
+warnings.simplefilter("ignore")
+os.environ["PYTHONWARNINGS"] = "ignore"
+
 # setup the seed to ensure reproducibility
 RANDOM_SEED = 42
 random.seed(RANDOM_SEED)
@@ -23,13 +28,14 @@ spectral_contrast = [True, False]
 spectral_flatness = [True, False]
 spectral_rolloff = [True, False]
 zcr = [True, False]
-mfccs = [13, 20]
+nans = [True, False]
+mfccs = [0, 13, 20]
 var_mfccs = [True, False]
 formants = [True, False]
 lfccs = [True, False]
 skewness = [True, False]
 shannon_entropy = [True, False]
-sexes = [0, 1]
+sexes = [0, 1, None]
 
 
 def dataset_config_to_json(experiment_config, file_path: Path) -> None:
@@ -78,53 +84,38 @@ def compose_dataset(dataset_params: dict) -> None:
             patient_features = []
             nan_in_data = False
             # select patients according to the specified sex
-            if int(patient["sex"]) == dataset_params["sex"]:
+            if int(patient["sex"]) == dataset_params["sex"] or dataset_params["sex"] is None:
                 # check specified features and add them to dataset that will be dumped
                 y.append(int(patient["pathology"]))
+                patient_features.append(int(patient["sex"]))
                 patient_features.append(int(patient["age"]))
+
                 # novel feature introduced in the article
                 if dataset_params["diff_pitch"]:
-                    if patient["diff_pitch"] == "nan":
-                        patient_features.append(0.0)
-                        nan_in_data = True
-                    else:
-                        patient_features.append(float(patient["diff_pitch"]))
+                    patient_features.append(float(patient["diff_pitch"]))
 
-                if patient["mean_f0"] == "nan":
-                    patient_features.append(0.0)
-                    nan_in_data = True
-                else:
-                    patient_features.append(float(patient["mean_f0"]))
+
+                patient_features.append(float(patient["mean_f0"]))
 
                 if dataset_params["stdev_f0"]:
-                    if patient["stdev_f0"] == "nan":
-                        patient_features.append(0.0)
-                        nan_in_data = True
-                    else:
-                        patient_features.append(float(patient["stdev_f0"]))
+                    patient_features.append(float(patient["stdev_f0"]))
 
                 patient_features.append(float(patient["hnr"]))
 
-                if patient["jitter"] == "nan":
-                    patient_features.append(0.0)
-                    nan_in_data = True
-                else:
-                    patient_features.append(float(patient["jitter"]))
 
-                if patient["shimmer"] == "nan":
-                    patient_features.append(0.0)
-                    nan_in_data = True
-                else:
-                    patient_features.append(float(patient["shimmer"]))
+                patient_features.append(float(patient["jitter"]))
 
-                all_mfcc = json.loads(patient["mfcc"])
-                patient_features += all_mfcc[:dataset_params["mfcc"]]
+                patient_features.append(float(patient["shimmer"]))
 
-                all_delta_mfcc = json.loads(patient["delta_mfcc"])
-                patient_features += all_delta_mfcc[:dataset_params["mfcc"]]
+                if dataset_params["mfcc"]>0:
+                    all_mfcc = json.loads(patient["mfcc"])
+                    patient_features += all_mfcc[:dataset_params["mfcc"]]
 
-                all_delta2_mfcc = json.loads(patient["delta2_mfcc"])
-                patient_features += all_delta2_mfcc[:dataset_params["mfcc"]]
+                    all_delta_mfcc = json.loads(patient["delta_mfcc"])
+                    patient_features += all_delta_mfcc[:dataset_params["mfcc"]]
+
+                    all_delta2_mfcc = json.loads(patient["delta2_mfcc"])
+                    patient_features += all_delta2_mfcc[:dataset_params["mfcc"]]
 
                 if dataset_params["var_mfcc"]:
                     all_var_mfcc = json.loads(patient["var_mfcc"])
@@ -165,21 +156,26 @@ def compose_dataset(dataset_params: dict) -> None:
 
                 if dataset_params["skewness"]:
                     patient_features.append(float(patient["skewness"]))
-                # novel feature introduced in the article
-                if nan_in_data:
-                    patient_features.append(1)
-                else:
-                    patient_features.append(0)
+
+                # semi-novel feature introduced in the article
+                if dataset_params["nan"]:
+                    patient_features.append(float(patient["nan"]))
 
                 X.append(patient_features)
 
-    subdir_name = "women"
-    if dataset_params["sex"] == 0:
-        subdir_name = "men"
+    match dataset_params["sex"]:
+        case 0:
+            subdir_name = "men"
+        case 1:
+            subdir_name = "women"
+        case None:
+            subdir_name = "both"
+        case _:
+            raise RuntimeError()
 
     dataset_path = Path(".").joinpath("training_data", subdir_name, folder_to_dump)
     if dataset_path.exists():
-        print(f"Directory {dataset_path.name} already exists, skipping.")
+        #print(f"Directory {dataset_path.name} already exists, skipping.")
         return
     dataset_path.mkdir(parents=True)
     dataset_file = dataset_path.joinpath("dataset.pk")
@@ -203,9 +199,11 @@ def main(max_workers: int = 8) -> None:
         for folder_to_dump, settings in enumerate(itertools.product(diff_pitch, stdev_f0, spectral_centroid,
                                                          spectral_contrast, spectral_flatness,
                                                          spectral_rolloff, zcr, mfccs, var_mfccs,
-                                                         formants, lfccs, skewness, shannon_entropy)):
+                                                         formants, lfccs, skewness, shannon_entropy, nans)):
             diff, stdev, centroid, contrast, flatness, rolloff, zrc_param, mfcc, var_mfcc, \
-            formant, lfcc, skew, shannon  = settings
+            formant, lfcc, skew, shannon, nan = settings
+            if mfcc == 0 and var_mfcc:
+                continue
             # dataset configuration
             dataset_config = {"sex": sex_of_interest,
                               "diff_pitch": diff,
@@ -221,6 +219,7 @@ def main(max_workers: int = 8) -> None:
                               "lfcc": lfcc,
                               "skewness": skew,
                               "shannon_entropy": shannon,
+                              "nan": nan,
                               "folder_to_dump": str(folder_to_dump),}
             configurations.append(dataset_config)
 

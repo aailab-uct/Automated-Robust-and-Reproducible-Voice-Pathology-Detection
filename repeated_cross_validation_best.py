@@ -11,13 +11,18 @@ from typing import List
 import tqdm
 import numpy as np
 import pandas as pd
+import sklearn
 from imblearn.metrics import geometric_mean_score
 from sklearn.model_selection import cross_validate, RepeatedStratifiedKFold
-from sklearn.metrics import accuracy_score, recall_score, matthews_corrcoef, make_scorer
+from sklearn.metrics import accuracy_score, recall_score, matthews_corrcoef, make_scorer, balanced_accuracy_score
 
 from classifier_configs import get_classifier
 from src.checksum import update_checksums
-from src.custom_metrics import unweighted_average_recall_score, bookmakers_informedness
+
+# Disable warnings
+import os, warnings
+warnings.simplefilter("ignore")
+os.environ["PYTHONWARNINGS"] = "ignore"
 
 # number of classifiers that should be 100x 10-fold cross-validated
 TOP_CLASSIFIERS = 1000
@@ -26,13 +31,20 @@ TOP_CLASSIFIERS = 1000
 RANDOM_SEED = 42
 np.random.seed(RANDOM_SEED)
 
+# speedup
+sklearn.set_config(
+    assume_finite=False,
+    skip_parameter_validation=True,
+)
+
+# specification of evaluated metrics
 scoring_dict = {"mcc": make_scorer(matthews_corrcoef),
                 "accuracy": make_scorer(accuracy_score),
                 "recall": make_scorer(recall_score),
                 "specificity": make_scorer(recall_score, pos_label=0),
                 "gm": make_scorer(geometric_mean_score),
-                "uar": make_scorer(unweighted_average_recall_score),
-                "bm": make_scorer(bookmakers_informedness)}
+                "uar": make_scorer(balanced_accuracy_score, adjusted=False),
+                "bm": make_scorer(balanced_accuracy_score, adjusted=True)}
 
 
 # pylint: disable=too-many-locals
@@ -59,7 +71,7 @@ def repeated_cross_validation_fit(sex: str, dataset_id: str, clf: str, hyper_par
     y = np.array(train_set["labels"])
 
     # get classifier and its pipeline specified in classifier_pipeline.py
-    pipeline,_ = get_classifier(clf, random_seed=RANDOM_SEED, hyperparameters=hyper_parameters)
+    pipeline,_ = get_classifier(clf, both_sexes=sex=="both", random_seed=RANDOM_SEED, hyperparameters=hyper_parameters)
     # reproducible stratified k-fold cross validation
     stratified_kfold = RepeatedStratifiedKFold(n_repeats=n_repeats, n_splits=10, random_state=RANDOM_SEED)
     results = cross_validate(pipeline, X=X, y=y, scoring=scoring_dict, cv=stratified_kfold, n_jobs=-1)
@@ -138,5 +150,5 @@ def main(classifiers: List[str], sexes: List[str]):
 
 if __name__ == "__main__":
     main(classifiers=["knn"],
-         sexes=["women", "men"])
+         sexes=["women", "men", "both"])
     update_checksums(Path("results_xvalidation"),Path("misc").joinpath("after_VI.sha256"))

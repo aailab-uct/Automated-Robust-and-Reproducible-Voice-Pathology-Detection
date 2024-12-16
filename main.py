@@ -3,10 +3,11 @@ This is the main file of the project. It is used to run all the other files in t
 and to check everything is working as expected.
 """
 import sys
+import os
 from multiprocessing import freeze_support
 from pathlib import Path
-# from types import NoneType
 from typing import List
+
 
 from src.checksum import test_file_list_from_file, update_checksums
 from average_results import process_results
@@ -15,6 +16,12 @@ from data_preprocessing import main as data_preprocessing
 from datasets_generator import main as datasets_generator
 from feature_extraction import main as feature_extraction
 from repeated_cross_validation_best import main as repeated_cross_validation_best
+
+# Disable warnings
+import os, warnings
+warnings.simplefilter("ignore")
+os.environ["PYTHONWARNINGS"] = "ignore"
+
 
 # machine dependent settings (set this according to available threads on your computational infrastructure)
 MAX_WORKERS = 24
@@ -40,9 +47,11 @@ def data_preparation(check_checksums=False):
     print("-"*79)
     print("Step 1: Data Preprocessing")
     print("Running data preprocessing.")
-    data_preprocessing(source_path=ORIGINAL_DATA_DIR,
-                       destination_path=PREPROCESSED_DATA_DIR,
-                       file_information_path=FILE_INFORMATION_PATH)
+    ok, _ = test_file_list_from_file(CHECKSUMS_AFTER_I, quiet=True, quick=True)
+    if not ok:
+        data_preprocessing(source_path=ORIGINAL_DATA_DIR,
+                           destination_path=PREPROCESSED_DATA_DIR,
+                           file_information_path=FILE_INFORMATION_PATH)
 
     # check if the folder dataset is created and if the checksums are the same
     if check_checksums:
@@ -56,8 +65,10 @@ def data_preparation(check_checksums=False):
     print("-"*79)
     print("Step 2: Feature Extraction")
     print("Running feature extraction.")
-    feature_extraction(source_dictionary=PREPROCESSED_DATA_DIR,
-                       round_digits=6)
+    ok, _ = test_file_list_from_file(CHECKSUMS_AFTER_II, quiet=True, quick=True)
+    if not ok:
+        feature_extraction(source_dictionary=PREPROCESSED_DATA_DIR,
+                           round_digits=6)
 
     # check if the created files are the same as ours
     if check_checksums:
@@ -113,7 +124,7 @@ def main(classifiers: List[str], sexes: List[str]):
     # if not, we will ignore missing files in checksums and add new checksums to the file
     # because we assume that the user (or more likely us) is computing new results
     if classifiers != ["svm_poly", "svm_rbf", "knn", "random_forest", "gauss_nb", "adaboost", "decisiontree"] or \
-        sexes != ["women", "men"]:
+        sexes != ["women", "men", "both"]:
         print("The classifiers or sexes are not the same as ours! We will ignore missing files in checksums.")
         ignore_missing_files = True
     else:
@@ -169,5 +180,5 @@ def main(classifiers: List[str], sexes: List[str]):
 
 if __name__ == "__main__":
     freeze_support()
-    main(classifiers=["svm_poly", "svm_rbf", "knn", "random_forest", "gauss_nb", "adaboost", "decisiontree"],
-         sexes=["women", "men"])
+    main(classifiers=["knn", "svm_poly", "svm_rbf", "random_forest", "gauss_nb", "adaboost", "decisiontree"],
+         sexes=["women", "men","both"])

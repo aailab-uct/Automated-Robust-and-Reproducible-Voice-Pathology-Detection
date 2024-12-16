@@ -13,17 +13,29 @@ import numpy as np
 import pandas as pd
 
 from imblearn.metrics import geometric_mean_score
+import sklearn
 from sklearn.model_selection import GridSearchCV,StratifiedKFold
-from sklearn.metrics import accuracy_score, recall_score, matthews_corrcoef
+from sklearn.metrics import accuracy_score, recall_score, matthews_corrcoef, balanced_accuracy_score
 from sklearn.metrics import make_scorer
 
 from classifier_configs import get_classifier
 from src.checksum import update_checksums
-from src.custom_metrics import unweighted_average_recall_score, bookmakers_informedness
+
+# Disable warnings
+import os, warnings
+warnings.simplefilter("ignore")
+os.environ["PYTHONWARNINGS"] = "ignore"
 
 # setup random seed to make code reproducible
 RANDOM_SEED = 42
 np.random.seed(RANDOM_SEED)
+
+
+# speedup
+sklearn.set_config(
+    assume_finite=False,
+    skip_parameter_validation=True,
+)
 
 # specification of evaluated metrics
 scoring_dict = {"mcc": make_scorer(matthews_corrcoef),
@@ -31,8 +43,8 @@ scoring_dict = {"mcc": make_scorer(matthews_corrcoef),
                 "recall": make_scorer(recall_score),
                 "specificity": make_scorer(recall_score, pos_label=0),
                 "gm": make_scorer(geometric_mean_score),
-                "uar": make_scorer(unweighted_average_recall_score),
-                "bm": make_scorer(bookmakers_informedness)}
+                "uar": make_scorer(balanced_accuracy_score, adjusted=False),
+                "bm": make_scorer(balanced_accuracy_score, adjusted=True)}
 
 
 def get_datasets_to_process(datasets_path: Path, results_data: Path,
@@ -92,7 +104,7 @@ def main(sex: str = "women", classifier = "svm_poly", dataset_slice = None):
                    "y": np.array(train_set["labels"])}
         # imblearn pipeline perform the resampling only with the training dataset
         # and scaling according to training dataset
-        pipeline, param_grid = get_classifier(classifier, random_seed=RANDOM_SEED)
+        pipeline, param_grid = get_classifier(classifier, both_sexes=sex=="both", random_seed=RANDOM_SEED)
         cross_validation = StratifiedKFold(n_splits=10, shuffle=True, random_state=RANDOM_SEED)
         # sklearn gridsearch with cross validation
         grid_search = GridSearchCV(pipeline, param_grid, cv=cross_validation, scoring=scoring_dict,

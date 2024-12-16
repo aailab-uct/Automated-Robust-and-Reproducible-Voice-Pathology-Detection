@@ -69,7 +69,9 @@ def best_dataset_for_each_clf(sex):
             with open(json_path) as f:
                 used_features = json.load(f)
                 # First six features are always used, we include them for more clarity
-                feature_table[f"{experiment_name[:4]}"] = ["Y", "Y", "Y", "Y", "Y", "Y",
+                feature_table[f"{experiment_name[:5]}"] = ["Y", "Y", "Y", "Y",
+                                                           used_features["nan"],
+                                                           "Y",
                                                            used_features["stdev_f0"],
                                                            used_features["diff_pitch"],
                                                            used_features["shannon_entropy"],
@@ -103,9 +105,10 @@ def best_dataset_for_each_clf(sex):
     # Merging the result and feature_table and transposing it again, to fit the final template
     result_merged = result.merge(feature_table, how="outer", left_on="dataset",
                                  right_on=feature_table.index).transpose()
+
     # Substituing the now empty column names with the classifiers to switch their position
     result_merged.columns = result_merged.loc["classifier"]
-    result_merged = result_merged[["svm", "knn", "gauss_nb","decisiontree", "random_forest", "adaboost"]]
+    result_merged = result_merged[["svm", "knn", "gauss_nb", "decisiontree", "random_forest", "adaboost"]]
 
     # Dropping the classifier and dataset rows as they are now obsolete
     result_merged.drop(["classifier", "dataset"], axis=0, inplace=True)
@@ -134,7 +137,7 @@ def generate_table_with_results(table):
                 counter += 1
             else:
                 latex_table += line
-    with open("latex_table_best_datasets.txt", "w") as file:
+    with open(f"latex_table_best_datasets_{SEX}.txt", "w") as file:
         file.write(latex_table)
     print("Done!")
 

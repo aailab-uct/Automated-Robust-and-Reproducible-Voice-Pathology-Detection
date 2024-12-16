@@ -1,5 +1,16 @@
 session_id,reason,age,talker_id,pathology
+1372,corrupted,21,980,healthy
 1573,corrupted,21,1027,healthy
+2070,corrupted,48,2261,"Hypofunktionelle Dysphonie, Kontaktpachydermie"
+2077,corrupted,57,1961,Hyperfunktionelle Dysphonie
+2081,corrupted,28,2268,Hyperfunktionelle Dysphonie
+2088,corrupted,77,1448,Rekurrensparese
+2426,corrupted,45,2560,Reinke Ödem
+2428,corrupted,28,2562,Dysphonie
+2448,corrupted,57,2582,Funktionelle Dysphonie
+2450,corrupted,49,2584,Rekurrensparese
+2451,corrupted,52,2585,Zentral-laryngale Bewegungsstörung
+2457,corrupted,61,2591,Funktionelle Dysphonie
 87,corrupted,68,97,healthy
 1231,age,17,1436,Mutationsfistelstimme
 1316,age,12,1700,Psychogene Mikrophonie
@@ -41,6 +52,23 @@ session_id,reason,age,talker_id,pathology
 844,age,12,1443,Laryngitis
 881,age,17,1474,Hyperfunktionelle Dysphonie
 937,age,14,1529,Psychogene Aphonie
+118,Sängerstimme,56,1309,Sängerstimme
+1980,Sängerstimme,23,2190,Sängerstimme
+1038,Gesangsstimme,43,1534,Gesangsstimme
+1041,Gesangsstimme,23,1537,Gesangsstimme
+1160,Gesangsstimme,31,1577,Gesangsstimme
+1224,Gesangsstimme,27,1612,Gesangsstimme
+1275,Gesangsstimme,28,1662,Gesangsstimme
+1286,Gesangsstimme,61,1674,Gesangsstimme
+154,Gesangsstimme,20,1334,Gesangsstimme
+1574,Gesangsstimme,35,1880,Gesangsstimme
+1588,Gesangsstimme,41,1888,Gesangsstimme
+1592,Gesangsstimme,23,1663,Gesangsstimme
+1600,Gesangsstimme,23,1901,Gesangsstimme
+666,Gesangsstimme,23,1393,Gesangsstimme
+817,Gesangsstimme,35,1429,Gesangsstimme
+822,Gesangsstimme,29,1348,Gesangsstimme
+939,Gesangsstimme,39,1531,Gesangsstimme
 159,multiple recordings,54,1314,Hyperfunktionelle Dysphonie
 362,multiple recordings,65,1305,Rekurrensparese
 364,multiple recordings,47,1313,Rekurrensparese
@@ -49,7 +77,6 @@ session_id,reason,age,talker_id,pathology
 567,multiple recordings,65,64,Dysodie
 728,multiple recordings,65,1305,Rekurrensparese
 741,multiple recordings,51,1351,Psychogene Dysphonie
-822,multiple recordings,29,1348,Gesangsstimme
 875,multiple recordings,41,1455,Leukoplakie
 877,multiple recordings,58,1414,Psychogene Dysphonie
 878,multiple recordings,58,1358,Funktionelle Dysphonie
@@ -174,7 +201,6 @@ session_id,reason,age,talker_id,pathology
 1579,multiple recordings,30,46,healthy
 1581,multiple recordings,72,1832,"Dysodie, Rekurrensparese"
 1590,multiple recordings,59,1355,Hypofunktionelle Dysphonie
-1592,multiple recordings,23,1663,Gesangsstimme
 1604,multiple recordings,67,1419,Rekurrensparese
 1605,multiple recordings,30,46,healthy
 1606,multiple recordings,67,1446,Chordektomie
@@ -281,12 +307,10 @@ session_id,reason,age,talker_id,pathology
 2034,multiple recordings,29,2225,"Hyperfunktionelle Dysphonie, Kontaktpachydermie"
 2061,multiple recordings,60,2083,Dysodie
 2064,multiple recordings,52,1995,Chordektomie
-2077,multiple recordings,57,1961,Hyperfunktionelle Dysphonie
 2078,multiple recordings,32,1970,Rekurrensparese
 2082,multiple recordings,60,2148,Spasmodische Dysphonie
 2083,multiple recordings,58,1990,Rekurrensparese
 2087,multiple recordings,62,2266,Dysphonie
-2088,multiple recordings,77,1448,Rekurrensparese
 2091,multiple recordings,70,2216,"Dysphonie, Leukoplakie"
 2109,multiple recordings,56,2040,Rekurrensparese
 2119,multiple recordings,70,2213,Dysphonie
@@ -308,7 +332,6 @@ session_id,reason,age,talker_id,pathology
 2194,multiple recordings,60,2148,Spasmodische Dysphonie
 2200,multiple recordings,26,12,healthy
 2211,multiple recordings,42,2358,Reinke Ödem
-2213,multiple recordings,48,2261,Psychogene Dysphonie
 2227,multiple recordings,37,2027,Spasmodische Dysphonie
 2234,multiple recordings,37,2027,Spasmodische Dysphonie
 2243,multiple recordings,32,1970,Rekurrensparese
@@ -373,7 +396,6 @@ session_id,reason,age,talker_id,pathology
 2512,multiple recordings,40,1357,Rekurrensparese
 2518,multiple recordings,64,2434,"Reinke Ödem, Stimmlippenpolyp"
 2536,multiple recordings,64,1818,Rekurrensparese
-2537,multiple recordings,58,2582,Dysphonie
 2543,multiple recordings,69,2381,Kontaktpachydermie
 2548,multiple recordings,72,1603,Chordektomie
 2558,multiple recordings,30,1695,"Dysodie, Sigmatismus"

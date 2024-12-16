@@ -1,6 +1,5 @@
 """
-Script that loads the dataset, preprocess it to desired format, drops undesired files,
-and removes silence from the recordings.
+Script that removes silence from the Saarbruecken Voice Database recordings.
 """
 from pathlib import Path
 
@@ -9,6 +8,10 @@ import soundfile as sf
 import pandas as pd
 from tqdm import tqdm
 
+# Disable warnings
+import os, warnings
+warnings.simplefilter("ignore")
+os.environ["PYTHONWARNINGS"] = "ignore"
 
 # Path to the dataset folder where all recordings should be saved
 PATH_SVD = Path('svd_db')
@@ -50,7 +53,7 @@ def drop_files(file_information_table, age_dict, silent=False, removed_files_pat
     """
     removed = pd.DataFrame(columns=["session_id", "reason", "age", "talker_id", "pathology"])
     # Drop corrupted files
-    session_id_to_delete = [1573, 87]
+    session_id_to_delete = [1573, 87,1372,2088,2077,2070,2081,2426,2428,2448,2450,2451,2457]
     idx_to_drop = file_information_table[file_information_table.session_id.isin(session_id_to_delete)].index
     removed = pd.concat(
         [removed,
@@ -76,6 +79,20 @@ def drop_files(file_information_table, age_dict, silent=False, removed_files_pat
     if not silent:
         print("After age restriction:\n\t",file_information_table.shape)
 
+    # Drop patients with Gesangsstimme and Sängerstimme
+    for path_to_del in ["Sängerstimme","Gesangsstimme"]:
+        idx_to_drop = file_information_table[file_information_table.pathology == path_to_del].index
+        removed = pd.concat(
+            [removed,
+            file_information_table.loc[idx_to_drop, ["session_id", "age", "talker_id",
+                                                     "pathology"]].assign(reason=path_to_del)])
+        file_information_table.drop(idx_to_drop, inplace=True)
+
+    if not silent:
+        print("After dropping Gesangsstimme and Sängerstimme:\n\t", file_information_table.shape)
+
+
+
     # Sort the values based on the session date. There are multiple recordings from some of the subjects. To prevent
     # potential data leakage, we will take only the oldest recordings of the healthy and pathological sessions for each
     # person. That means each person has maximum of 2 recordings in the final dataset, one being diagnosed
@@ -88,7 +105,6 @@ def drop_files(file_information_table, age_dict, silent=False, removed_files_pat
     # Drop all duplicates of talker id and diagnosis combinations with keeping only the first record
     file_information_table_unique = file_information_table.drop_duplicates(subset=["talker_id", "pathology_binary"],
                                                                            keep="first")
-
     removed = pd.concat(
         [removed,
         file_information_table.loc[file_information_table.index.difference(file_information_table_unique.index),

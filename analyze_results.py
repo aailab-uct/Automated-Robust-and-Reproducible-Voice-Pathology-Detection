@@ -4,6 +4,12 @@ import json
 import pandas as pd
 import numpy as np
 from matplotlib import pyplot as plt
+from tqdm import tqdm
+
+# Disable warnings
+import os, warnings
+warnings.simplefilter("ignore")
+os.environ["PYTHONWARNINGS"] = "ignore"
 
 RANDOM_SEED = 42
 np.random.seed(RANDOM_SEED)
@@ -26,7 +32,7 @@ table_results = table_results[(table_results.mean_test_accuracy >= MIN_ACC) &
                               (table_results.mean_test_specificity >= MIN_SPEC)].sort_values("mean_test_mcc",
                                                                                              kind="mergesort")
 
-for _, row in table_results.tail(10).iterrows():
+for _, row in tqdm(table_results.tail(10).iterrows()):
     str_params = ""
     for key, val in json.loads(row["params"].replace("'", '"')).items():
         if key == "classifier__C":

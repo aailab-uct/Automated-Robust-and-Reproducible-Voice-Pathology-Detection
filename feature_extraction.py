@@ -18,6 +18,12 @@ from torchaudio import transforms as transform
 from scipy.stats import skew
 from tqdm import tqdm
 
+# Disable warnings
+import os, warnings
+warnings.simplefilter("ignore")
+os.environ["PYTHONWARNINGS"] = "ignore"
+
+
 # setup seed to ensure reproducibility
 RANDOM_SEED = 42
 np.random.seed(RANDOM_SEED)
